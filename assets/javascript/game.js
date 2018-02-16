@@ -1,3 +1,16 @@
+//Playing audio
+
+var audioObject = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    audioObject.play(); 
+} 
+
+function pauseAudio() { 
+    audioObject.pause(); 
+} 
+
+
 //Create an array that will hold all the alphabets
 
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -29,11 +42,14 @@ var words=['cat','dog','horse','monkey','cow','okapi','bear','lion','tiger',
 let underScore=[];
 
 //Choose a word randomly
+
+
 let wordsRandomNumber= Math.floor(Math.random()*words.length);
 let chosenWord=words[wordsRandomNumber];
 
 //Testing that a random word gets chosen
 console.log(chosenWord);
+
 
 //Create underscores function based on the length of the word
 
@@ -42,10 +58,12 @@ for(let i=0;i<chosenWord.length;i++){
     underScore.push('_');
 }
 return underScore;
-}
-
 //Testing underscores get created based on length of chosen word
 console.log(createUnderScore());
+}
+
+
+
 
 //Hooking into HTL elements
 
@@ -65,7 +83,6 @@ var userGuess = event.key;
 
 if(letters.indexOf(userGuess)>-1){
 
-   
 
 //testing
 //console.log(userGuess);
@@ -114,6 +131,17 @@ if(wrongGuess.length===chosenWord.length){
     document.getElementById('guesses-left').innerHTML=lives;
     document.getElementById('loss-counter').innerHTML=losses;
     alert("Sorry,You lose!");
+
+    if (lives===0){
+        alert("You lose the game,click any key to start again!")
+        document.onkeyup = function(event){
+        
+   
+            createUnderScore();
+  
+        };
+
+    }
     //reset
 }
 }

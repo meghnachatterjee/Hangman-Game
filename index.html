@@ -12,18 +12,36 @@
   <!-- Bootstrap is used to make game look nicer -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+  <style>
+    .jumbotron{
+      background:url('assets/images/zoo.jpg')
+    }
+    body{
+      background:url('assets/images/leaves.jpg')
+    }
+  </style>
 </head>
 
 <body>
+
+  <!--Adding an audio file-->
+
+  <audio id="myAudio">
+      <source src="assets/images/song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+  </audio>
 
   <!-- Bootstrap Container will hold everything -->
   <div class="container" style="text-align:center";>
     <!-- Jumbotron holds the title section -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hangman</h1>
-        <h2>Guess the name of the animals!</h2>
-        <small>Click any letter to begin...</small>
+        <h1 style="color:white";><bold>Hangman</bold></h1>
+        <h2 style="color:white">Guess the name of the animals!</h2>
+        <h3 style="color:white">Click any letter to begin...</h3>
+        <p style="color:white">Click the buttons to play or pause the audio.</p>
+        <button onclick="playAudio()" type="button">Play Audio</button>
+        <button onclick="pauseAudio()" type="button">Pause Audio</button> 
       </div>
     </div>
 
@@ -33,7 +51,7 @@
 
         <!-- First Panel: Holds the Word to Guess (blanks and guessed word) -->
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading" style="background-color:teal">
             <h3 class="panel-title"><strong>Word to Guess</strong></h3>
           </div>
           <div class="panel-body">
@@ -45,7 +63,7 @@
 
         <!-- Second Panel: Holds the list of Wrong User Guesses. -->
         <div class="panel panel-default">
-          <div class="panel-body">
+          <div class="panel-body" style="background-color:teal">
 
             <!-- This span section called userGuesses is where we will be dumping the wrong guesses.
 						Pay particular attention to the id called ****userGuesses***. We'll be referencing this in the JavaScript. -->
