@@ -11,7 +11,9 @@ var losses = 0;
 //Creating empty arrays to put correctly guessed letters and wrongly guessed letters
 let correctGuess=[];
 let wrongGuess=[];
-let lives=10;
+let lives=5;
+
+
 
 // Creating variables that will count the number of guesses, spaces in a movie and lives
 let guessCount;
@@ -47,18 +49,20 @@ console.log(createUnderScore());
 
 //Hooking into HTL elements
 
-//correctGuess=document.getElementById('#word-blanks');
-//wrongGuess=document.getElementById('#wrong-guesses');
+document.getElementById('word-blanks').innerHTML=underScore;
+document.getElementById('guesses-left').innerHTML=lives;
+document.getElementById('win-counter').innerHTML=wins;
+document.getElementById('loss-counter').innerHTML=losses;
 
 //Register the letter the user has pressed and save it in a variable
 
-document.onkeyup = function(event) {
+document.addEventListener('keypress',(event) => {
 
      // Determines which key was pressed.
 var userGuess = event.key;
 
 //If user guess is one of the letters continue
-//if(letters.indexOf(userGuess)){
+
 
    
 
@@ -66,52 +70,64 @@ var userGuess = event.key;
 //console.log(userGuess);
 
 //Verify if the letter pressed is correct
-let guessContains=chosenWord.indexOf(userGuess);
+let guessContainsNum=chosenWord.indexOf(userGuess);
 
 //Testing whether this returns anything
 //console.log(guessContains);
 
 //If correct then push the letter to the correct array
-if(guessContains>-1){
+if(guessContainsNum>-1){
     //console.log(true);
   correctGuess.push(userGuess);
   //Replace the underscore with the correct letter guessed by user
   underScore[chosenWord.indexOf(userGuess)]=userGuess;
   //testing
   console.log(underScore);
+  document.getElementById('word-blanks').innerHTML=underScore;
+
+  //Increment wins by one if word matches
+if(correctGuess.length===chosenWord.length){
+    wins++;
+    document.getElementById('win-counter').innerHTML=wins;
+    alert('Congratulations!!!You Win!');
+    //reset
+    
+}
 }
 
 //Testing right guess
 //console.log(correctGuess);
-
 //If wrong push to array of guessed letters
 
-if(guessContains<=-1){
+if(guessContainsNum<=-1){
     //testing
     //console.log(false);
     wrongGuess.push(userGuess);
+    document.getElementById('wrong-guesses').innerHTML=wrongGuess;
+
+    //Decrement lives by one each time user guesses the wrong letter and 
+//Increment losses by one if user loses all lives before guessing the word
+if(wrongGuess.length===chosenWord.length){
+    lives--;
+    losses++;
+    document.getElementById('guesses-left').innerHTML=lives;
+    document.getElementById('loss-counter').innerHTML=losses;
+    alert("Sorry,You lose!");
+    //reset
+}
 }
 
 //Testing wrong guess 
 console.log(wrongGuess);
 
-//Decrement lives by one each time user guesses the wrong letter and 
-//Increment losses by one if user loses all lives before guessing the word
-if(wrongGuess.length===chosenWord.length){
-    lives--;
-    losses++;
-}
+
 
 //Testing lives
 //console.log(lives);
 
-//Increment wins by one if word matches
-if(correctGuess.length===chosenWord.length){
-    wins++;
-}
+
 //
 
+});
 
-
-}
 //}
