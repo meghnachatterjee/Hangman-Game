@@ -63,6 +63,7 @@ var userGuess = event.key;
 
 //If user guess is one of the letters continue
 
+if(letters.indexOf(userGuess)>-1){
 
    
 
@@ -126,7 +127,8 @@ console.log(wrongGuess);
 //console.log(lives);
 
 
-//
+//Ending if statement that checks for letters pressed by user
+}
 
 });
 
